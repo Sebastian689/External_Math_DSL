@@ -1,0 +1,32 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+MathExp:
+	'var' name=ID '=' exp=Exp
+;
+
+Exp:
+	left=Number (operator=ExpOp right=Number)?
+;
+
+ExpOp:
+	{Plus} '+' | {Minus} '-'	 | {Mult} '*' | {Div} '/'	
+;
+
+Primary:
+	Number | Parenthesis | VariableUse
+;
+
+Parenthesis:
+	'(' exp=Exp ')'
+;
+
+Number:
+	value=INT
+;
+
+VariableUse:
+	ref = [MathExp]
+;
