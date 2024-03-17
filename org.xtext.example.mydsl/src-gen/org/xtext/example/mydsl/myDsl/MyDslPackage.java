@@ -105,40 +105,13 @@ public interface MyDslPackage extends EPackage
   int EXP = 1;
 
   /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXP__LEFT = 0;
-
-  /**
-   * The feature id for the '<em><b>Operator</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXP__OPERATOR = 1;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXP__RIGHT = 2;
-
-  /**
    * The number of structural features of the '<em>Exp</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXP_FEATURE_COUNT = 3;
+  int EXP_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ExpOpImpl <em>Exp Op</em>}' class.
@@ -160,109 +133,6 @@ public interface MyDslPackage extends EPackage
   int EXP_OP_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.PrimaryImpl <em>Primary</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.PrimaryImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPrimary()
-   * @generated
-   */
-  int PRIMARY = 3;
-
-  /**
-   * The number of structural features of the '<em>Primary</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRIMARY_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ParenthesisImpl <em>Parenthesis</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.ParenthesisImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParenthesis()
-   * @generated
-   */
-  int PARENTHESIS = 4;
-
-  /**
-   * The feature id for the '<em><b>Exp</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PARENTHESIS__EXP = PRIMARY_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Parenthesis</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PARENTHESIS_FEATURE_COUNT = PRIMARY_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.NumberImpl <em>Number</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.NumberImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getNumber()
-   * @generated
-   */
-  int NUMBER = 5;
-
-  /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NUMBER__VALUE = PRIMARY_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Number</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NUMBER_FEATURE_COUNT = PRIMARY_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.VariableUseImpl <em>Variable Use</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.VariableUseImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getVariableUse()
-   * @generated
-   */
-  int VARIABLE_USE = 6;
-
-  /**
-   * The feature id for the '<em><b>Ref</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VARIABLE_USE__REF = PRIMARY_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Variable Use</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VARIABLE_USE_FEATURE_COUNT = PRIMARY_FEATURE_COUNT + 1;
-
-  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.PlusImpl <em>Plus</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -270,7 +140,25 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPlus()
    * @generated
    */
-  int PLUS = 7;
+  int PLUS = 3;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__LEFT = EXP_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__RIGHT = EXP_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Plus</em>' class.
@@ -279,7 +167,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PLUS_FEATURE_COUNT = EXP_OP_FEATURE_COUNT + 0;
+  int PLUS_FEATURE_COUNT = EXP_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.MinusImpl <em>Minus</em>}' class.
@@ -289,7 +177,25 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMinus()
    * @generated
    */
-  int MINUS = 8;
+  int MINUS = 4;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS__LEFT = EXP_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS__RIGHT = EXP_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Minus</em>' class.
@@ -298,7 +204,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MINUS_FEATURE_COUNT = EXP_OP_FEATURE_COUNT + 0;
+  int MINUS_FEATURE_COUNT = EXP_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.MultImpl <em>Mult</em>}' class.
@@ -308,7 +214,25 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMult()
    * @generated
    */
-  int MULT = 9;
+  int MULT = 5;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULT__LEFT = EXP_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULT__RIGHT = EXP_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Mult</em>' class.
@@ -317,7 +241,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MULT_FEATURE_COUNT = EXP_OP_FEATURE_COUNT + 0;
+  int MULT_FEATURE_COUNT = EXP_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.DivImpl <em>Div</em>}' class.
@@ -327,7 +251,25 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDiv()
    * @generated
    */
-  int DIV = 10;
+  int DIV = 6;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIV__LEFT = EXP_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIV__RIGHT = EXP_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Div</em>' class.
@@ -336,7 +278,63 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DIV_FEATURE_COUNT = EXP_OP_FEATURE_COUNT + 0;
+  int DIV_FEATURE_COUNT = EXP_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.MyNumberImpl <em>My Number</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.MyNumberImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMyNumber()
+   * @generated
+   */
+  int MY_NUMBER = 7;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MY_NUMBER__VALUE = EXP_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>My Number</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MY_NUMBER_FEATURE_COUNT = EXP_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.VariableUseImpl <em>Variable Use</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.VariableUseImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getVariableUse()
+   * @generated
+   */
+  int VARIABLE_USE = 8;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIABLE_USE__REF = EXP_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Variable Use</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIABLE_USE_FEATURE_COUNT = EXP_FEATURE_COUNT + 1;
 
 
   /**
@@ -382,39 +380,6 @@ public interface MyDslPackage extends EPackage
   EClass getExp();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Exp#getLeft <em>Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Exp#getLeft()
-   * @see #getExp()
-   * @generated
-   */
-  EReference getExp_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Exp#getOperator <em>Operator</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Operator</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Exp#getOperator()
-   * @see #getExp()
-   * @generated
-   */
-  EReference getExp_Operator();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Exp#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Exp#getRight()
-   * @see #getExp()
-   * @generated
-   */
-  EReference getExp_Right();
-
-  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ExpOp <em>Exp Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -425,56 +390,153 @@ public interface MyDslPackage extends EPackage
   EClass getExpOp();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Primary <em>Primary</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Plus <em>Plus</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Primary</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Primary
+   * @return the meta object for class '<em>Plus</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Plus
    * @generated
    */
-  EClass getPrimary();
+  EClass getPlus();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Parenthesis <em>Parenthesis</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Plus#getLeft <em>Left</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Parenthesis</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Parenthesis
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Plus#getLeft()
+   * @see #getPlus()
    * @generated
    */
-  EClass getParenthesis();
+  EReference getPlus_Left();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Parenthesis#getExp <em>Exp</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Plus#getRight <em>Right</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exp</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Parenthesis#getExp()
-   * @see #getParenthesis()
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Plus#getRight()
+   * @see #getPlus()
    * @generated
    */
-  EReference getParenthesis_Exp();
+  EReference getPlus_Right();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Number <em>Number</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Minus <em>Minus</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Number</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Number
+   * @return the meta object for class '<em>Minus</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Minus
    * @generated
    */
-  EClass getNumber();
+  EClass getMinus();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Number#getValue <em>Value</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Minus#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Minus#getLeft()
+   * @see #getMinus()
+   * @generated
+   */
+  EReference getMinus_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Minus#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Minus#getRight()
+   * @see #getMinus()
+   * @generated
+   */
+  EReference getMinus_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Mult <em>Mult</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Mult</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Mult
+   * @generated
+   */
+  EClass getMult();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Mult#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Mult#getLeft()
+   * @see #getMult()
+   * @generated
+   */
+  EReference getMult_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Mult#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Mult#getRight()
+   * @see #getMult()
+   * @generated
+   */
+  EReference getMult_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Div <em>Div</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Div</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Div
+   * @generated
+   */
+  EClass getDiv();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Div#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Div#getLeft()
+   * @see #getDiv()
+   * @generated
+   */
+  EReference getDiv_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Div#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Div#getRight()
+   * @see #getDiv()
+   * @generated
+   */
+  EReference getDiv_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.MyNumber <em>My Number</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>My Number</em>'.
+   * @see org.xtext.example.mydsl.myDsl.MyNumber
+   * @generated
+   */
+  EClass getMyNumber();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.MyNumber#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Value</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Number#getValue()
-   * @see #getNumber()
+   * @see org.xtext.example.mydsl.myDsl.MyNumber#getValue()
+   * @see #getMyNumber()
    * @generated
    */
-  EAttribute getNumber_Value();
+  EAttribute getMyNumber_Value();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.VariableUse <em>Variable Use</em>}'.
@@ -496,46 +558,6 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getVariableUse_Ref();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Plus <em>Plus</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Plus</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Plus
-   * @generated
-   */
-  EClass getPlus();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Minus <em>Minus</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Minus</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Minus
-   * @generated
-   */
-  EClass getMinus();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Mult <em>Mult</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Mult</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Mult
-   * @generated
-   */
-  EClass getMult();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Div <em>Div</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Div</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Div
-   * @generated
-   */
-  EClass getDiv();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -597,30 +619,6 @@ public interface MyDslPackage extends EPackage
     EClass EXP = eINSTANCE.getExp();
 
     /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXP__LEFT = eINSTANCE.getExp_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Operator</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXP__OPERATOR = eINSTANCE.getExp_Operator();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXP__RIGHT = eINSTANCE.getExp_Right();
-
-    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ExpOpImpl <em>Exp Op</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -631,42 +629,118 @@ public interface MyDslPackage extends EPackage
     EClass EXP_OP = eINSTANCE.getExpOp();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.PrimaryImpl <em>Primary</em>}' class.
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.PlusImpl <em>Plus</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.PrimaryImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPrimary()
+     * @see org.xtext.example.mydsl.myDsl.impl.PlusImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPlus()
      * @generated
      */
-    EClass PRIMARY = eINSTANCE.getPrimary();
+    EClass PLUS = eINSTANCE.getPlus();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ParenthesisImpl <em>Parenthesis</em>}' class.
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.ParenthesisImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParenthesis()
      * @generated
      */
-    EClass PARENTHESIS = eINSTANCE.getParenthesis();
+    EReference PLUS__LEFT = eINSTANCE.getPlus_Left();
 
     /**
-     * The meta object literal for the '<em><b>Exp</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PARENTHESIS__EXP = eINSTANCE.getParenthesis_Exp();
+    EReference PLUS__RIGHT = eINSTANCE.getPlus_Right();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.NumberImpl <em>Number</em>}' class.
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MinusImpl <em>Minus</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.NumberImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getNumber()
+     * @see org.xtext.example.mydsl.myDsl.impl.MinusImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMinus()
      * @generated
      */
-    EClass NUMBER = eINSTANCE.getNumber();
+    EClass MINUS = eINSTANCE.getMinus();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MINUS__LEFT = eINSTANCE.getMinus_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MINUS__RIGHT = eINSTANCE.getMinus_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MultImpl <em>Mult</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.MultImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMult()
+     * @generated
+     */
+    EClass MULT = eINSTANCE.getMult();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MULT__LEFT = eINSTANCE.getMult_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MULT__RIGHT = eINSTANCE.getMult_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.DivImpl <em>Div</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.DivImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDiv()
+     * @generated
+     */
+    EClass DIV = eINSTANCE.getDiv();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DIV__LEFT = eINSTANCE.getDiv_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DIV__RIGHT = eINSTANCE.getDiv_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MyNumberImpl <em>My Number</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.MyNumberImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMyNumber()
+     * @generated
+     */
+    EClass MY_NUMBER = eINSTANCE.getMyNumber();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -674,7 +748,7 @@ public interface MyDslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute NUMBER__VALUE = eINSTANCE.getNumber_Value();
+    EAttribute MY_NUMBER__VALUE = eINSTANCE.getMyNumber_Value();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.VariableUseImpl <em>Variable Use</em>}' class.
@@ -693,46 +767,6 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference VARIABLE_USE__REF = eINSTANCE.getVariableUse_Ref();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.PlusImpl <em>Plus</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.PlusImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPlus()
-     * @generated
-     */
-    EClass PLUS = eINSTANCE.getPlus();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MinusImpl <em>Minus</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.MinusImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMinus()
-     * @generated
-     */
-    EClass MINUS = eINSTANCE.getMinus();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MultImpl <em>Mult</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.MultImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMult()
-     * @generated
-     */
-    EClass MULT = eINSTANCE.getMult();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.DivImpl <em>Div</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.DivImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDiv()
-     * @generated
-     */
-    EClass DIV = eINSTANCE.getDiv();
 
   }
 

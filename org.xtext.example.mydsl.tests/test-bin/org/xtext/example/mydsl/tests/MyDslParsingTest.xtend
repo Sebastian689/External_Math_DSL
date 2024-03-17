@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
 import org.xtext.example.mydsl.myDsl.MathExp
 
-import static extension org.xtext.example.mydsl.generator.MyDslGenerator.compute
+import org.xtext.example.mydsl.generator.MyDslGenerator.compute
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyDslInjectorProvider)
@@ -48,5 +48,12 @@ class MyDslParsingTest {
 		Assertions.assertEquals(42, variables.get("x"))
 	}
 	
-	
+	@Test
+	def void threeNumbersAddition() {
+		val result = '''
+			var x = 22 + 18 + 2
+		'''.parse
+		val variables = result.compute
+		Assertions.assertEquals(42, variables.get("x"))
+	}
 }

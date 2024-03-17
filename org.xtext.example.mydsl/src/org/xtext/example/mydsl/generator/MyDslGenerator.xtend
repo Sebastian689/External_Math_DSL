@@ -17,12 +17,11 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import org.xtext.example.mydsl.myDsl.MathExp
 import org.xtext.example.mydsl.myDsl.Exp
-import org.xtext.example.mydsl.myDsl.Primary
 import org.xtext.example.mydsl.myDsl.Plus
 import org.xtext.example.mydsl.myDsl.Minus
 import org.xtext.example.mydsl.myDsl.Mult
 import org.xtext.example.mydsl.myDsl.Div
-import org.xtext.example.mydsl.myDsl.Parenthesis
+import org.xtext.example.mydsl.myDsl.MyNumber
 
 /**
  * Generates code from your model files on save.
@@ -31,54 +30,21 @@ import org.xtext.example.mydsl.myDsl.Parenthesis
  */
 class MyDslGenerator extends AbstractGenerator {
 
-	static Map<String, Integer> variables = new HashMap();
-	
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		val math = resource.allContents.filter(MathExp).next
-		val result = math.compute
-		
-		// You can replace with hovering, see Bettini Chapter 8
-		result.displayPanel
+		val sys = resource.allContents.filter(MathExp).next
+		fsa.generateFile("math.txt", sys.exp.compute())
 	}
 	
-	//
-	// Compute function: computes value of expression
-	// Note: written according to illegal left-recursive grammar, requires fix
-	//
 	
-	def static compute(MathExp math) { 
-		//math.exp.computeExp
-		variables.put(math.name, math.exp.computeExp)
-		return variables
+	def static String compute(Plus exp){
+		"(" + exp.left.compute  +"+" +exp.right.compute +")"
+	}
+	def static String compute(MyNumber exp){
+		exp.value + ""
 	}
 	
-	def static int computeExp(Exp exp) {
-		val left = exp.left.computePrim
-//		if (exp.operator === null) {
-//        	return left
-//    	}
-		switch exp.operator {
-			Plus: left+exp.right.computePrim
-			Minus: left-exp.right.computePrim
-			Mult: left*exp.right.computePrim
-			Div: left/exp.right.computePrim
-			default: left
-		}
-	}
-	
-	def static int computePrim(Primary factor) { 
-		if (factor == number) {
-			return 40
-		}
-		return 42
+	def static compute(Exp exp) {
+		"exp!"
 	}
 
-	def void displayPanel(Map<String, Integer> result) {
-		var resultString = ""
-		for (entry : result.entrySet()) {
-         	resultString += "var " + entry.getKey() + " = " + entry.getValue() + "\n"
-        }
-		
-		JOptionPane.showMessageDialog(null, resultString ,"Math Language", JOptionPane.INFORMATION_MESSAGE)
-	}
 }

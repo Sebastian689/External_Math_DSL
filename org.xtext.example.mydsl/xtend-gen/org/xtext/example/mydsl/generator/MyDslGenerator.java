@@ -4,22 +4,14 @@
 package org.xtext.example.mydsl.generator;
 
 import com.google.common.collect.Iterators;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import javax.swing.JOptionPane;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.xtext.example.mydsl.myDsl.Div;
 import org.xtext.example.mydsl.myDsl.Exp;
-import org.xtext.example.mydsl.myDsl.ExpOp;
 import org.xtext.example.mydsl.myDsl.MathExp;
-import org.xtext.example.mydsl.myDsl.Minus;
-import org.xtext.example.mydsl.myDsl.Mult;
+import org.xtext.example.mydsl.myDsl.MyNumber;
 import org.xtext.example.mydsl.myDsl.Plus;
-import org.xtext.example.mydsl.myDsl.Primary;
 
 /**
  * Generates code from your model files on save.
@@ -28,79 +20,27 @@ import org.xtext.example.mydsl.myDsl.Primary;
  */
 @SuppressWarnings("all")
 public class MyDslGenerator extends AbstractGenerator {
-  private static Map<String, Integer> variables = new HashMap<String, Integer>();
-
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    final MathExp math = Iterators.<MathExp>filter(resource.getAllContents(), MathExp.class).next();
-    final Map<String, Integer> result = MyDslGenerator.compute(math);
-    this.displayPanel(result);
+    final MathExp sys = Iterators.<MathExp>filter(resource.getAllContents(), MathExp.class).next();
+    fsa.generateFile("math.txt", MyDslGenerator.compute(sys.getExp()));
   }
 
-  public static Map<String, Integer> compute(final MathExp math) {
-    MyDslGenerator.variables.put(math.getName(), Integer.valueOf(MyDslGenerator.computeExp(math.getExp())));
-    return MyDslGenerator.variables;
+  public static String compute(final Plus exp) {
+    String _compute = MyDslGenerator.compute(exp.getLeft());
+    String _plus = ("(" + _compute);
+    String _plus_1 = (_plus + "+");
+    String _compute_1 = MyDslGenerator.compute(exp.getRight());
+    String _plus_2 = (_plus_1 + _compute_1);
+    return (_plus_2 + ")");
   }
 
-  public static int computeExp(final Exp exp) {
-    int _xblockexpression = (int) 0;
-    {
-      final int left = MyDslGenerator.computePrim(exp.getLeft());
-      int _switchResult = (int) 0;
-      ExpOp _operator = exp.getOperator();
-      boolean _matched = false;
-      if (_operator instanceof Plus) {
-        _matched=true;
-        int _computePrim = MyDslGenerator.computePrim(exp.getRight());
-        _switchResult = (left + _computePrim);
-      }
-      if (!_matched) {
-        if (_operator instanceof Minus) {
-          _matched=true;
-          int _computePrim = MyDslGenerator.computePrim(exp.getRight());
-          _switchResult = (left - _computePrim);
-        }
-      }
-      if (!_matched) {
-        if (_operator instanceof Mult) {
-          _matched=true;
-          int _computePrim = MyDslGenerator.computePrim(exp.getRight());
-          _switchResult = (left * _computePrim);
-        }
-      }
-      if (!_matched) {
-        if (_operator instanceof Div) {
-          _matched=true;
-          int _computePrim = MyDslGenerator.computePrim(exp.getRight());
-          _switchResult = (left / _computePrim);
-        }
-      }
-      if (!_matched) {
-        _switchResult = left;
-      }
-      _xblockexpression = _switchResult;
-    }
-    return _xblockexpression;
+  public static String compute(final MyNumber exp) {
+    int _value = exp.getValue();
+    return (Integer.valueOf(_value) + "");
   }
 
-  public static int computePrim(final Primary factor) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field number is undefined");
-  }
-
-  public void displayPanel(final Map<String, Integer> result) {
-    String resultString = "";
-    Set<Map.Entry<String, Integer>> _entrySet = result.entrySet();
-    for (final Map.Entry<String, Integer> entry : _entrySet) {
-      String _resultString = resultString;
-      String _key = entry.getKey();
-      String _plus = ("var " + _key);
-      String _plus_1 = (_plus + " = ");
-      Integer _value = entry.getValue();
-      String _plus_2 = (_plus_1 + _value);
-      String _plus_3 = (_plus_2 + "\n");
-      resultString = (_resultString + _plus_3);
-    }
-    JOptionPane.showMessageDialog(null, resultString, "Math Language", JOptionPane.INFORMATION_MESSAGE);
+  public static String compute(final Exp exp) {
+    return "exp!";
   }
 }

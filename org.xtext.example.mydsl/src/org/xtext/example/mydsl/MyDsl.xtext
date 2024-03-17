@@ -8,25 +8,27 @@ MathExp:
 ;
 
 Exp:
-	left=Number (operator=ExpOp right=Number)?
+	PlusMinus
+;
+
+PlusMinus returns Exp:
+	Term ({Plus.left=current} '+' right =Term | 
+		{Minus.left=current} '-' right=Term
+	)*
+;
+
+Term returns Exp:
+	Primary (
+		({Mult.left=current} '*' right=Primary |
+		{Div.left=current} '/' right=Primary
+		)
+	)*
 ;
 
 ExpOp:
 	{Plus} '+' | {Minus} '-'	 | {Mult} '*' | {Div} '/'	
 ;
 
-Primary:
-	Number | Parenthesis | VariableUse
-;
-
-Parenthesis:
-	'(' exp=Exp ')'
-;
-
-Number:
-	value=INT
-;
-
-VariableUse:
-	ref = [MathExp]
+Primary returns Exp: 
+	{MyNumber} value=INT | '(' Exp ')' | {VariableUse} ref = [MathExp]
 ;

@@ -10,21 +10,22 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.MyNumber;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Number</b></em>'.
+ * An implementation of the model object '<em><b>My Number</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.NumberImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MyNumberImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class NumberImpl extends PrimaryImpl implements org.xtext.example.mydsl.myDsl.Number
+public class MyNumberImpl extends ExpImpl implements MyNumber
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -51,7 +52,7 @@ public class NumberImpl extends PrimaryImpl implements org.xtext.example.mydsl.m
    * <!-- end-user-doc -->
    * @generated
    */
-  protected NumberImpl()
+  protected MyNumberImpl()
   {
     super();
   }
@@ -64,7 +65,7 @@ public class NumberImpl extends PrimaryImpl implements org.xtext.example.mydsl.m
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.NUMBER;
+    return MyDslPackage.Literals.MY_NUMBER;
   }
 
   /**
@@ -89,7 +90,7 @@ public class NumberImpl extends PrimaryImpl implements org.xtext.example.mydsl.m
     int oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.NUMBER__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MY_NUMBER__VALUE, oldValue, value));
   }
 
   /**
@@ -102,7 +103,7 @@ public class NumberImpl extends PrimaryImpl implements org.xtext.example.mydsl.m
   {
     switch (featureID)
     {
-      case MyDslPackage.NUMBER__VALUE:
+      case MyDslPackage.MY_NUMBER__VALUE:
         return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -118,7 +119,7 @@ public class NumberImpl extends PrimaryImpl implements org.xtext.example.mydsl.m
   {
     switch (featureID)
     {
-      case MyDslPackage.NUMBER__VALUE:
+      case MyDslPackage.MY_NUMBER__VALUE:
         setValue((Integer)newValue);
         return;
     }
@@ -135,7 +136,7 @@ public class NumberImpl extends PrimaryImpl implements org.xtext.example.mydsl.m
   {
     switch (featureID)
     {
-      case MyDslPackage.NUMBER__VALUE:
+      case MyDslPackage.MY_NUMBER__VALUE:
         setValue(VALUE_EDEFAULT);
         return;
     }
@@ -152,7 +153,7 @@ public class NumberImpl extends PrimaryImpl implements org.xtext.example.mydsl.m
   {
     switch (featureID)
     {
-      case MyDslPackage.NUMBER__VALUE:
+      case MyDslPackage.MY_NUMBER__VALUE:
         return value != VALUE_EDEFAULT;
     }
     return super.eIsSet(featureID);
@@ -175,4 +176,4 @@ public class NumberImpl extends PrimaryImpl implements org.xtext.example.mydsl.m
     return result.toString();
   }
 
-} //NumberImpl
+} //MyNumberImpl

@@ -10,25 +10,29 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//MathExp/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//MathExp/exp"/>
     </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//Exp">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Exp/left"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Exp/operator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Exp/right"/>
-    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Exp"/>
     <genClasses ecoreClass="MyDsl.ecore#//ExpOp"/>
-    <genClasses ecoreClass="MyDsl.ecore#//Primary"/>
-    <genClasses ecoreClass="MyDsl.ecore#//Parenthesis">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Parenthesis/exp"/>
+    <genClasses ecoreClass="MyDsl.ecore#//Plus">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Plus/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Plus/right"/>
     </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//Number">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Number/value"/>
+    <genClasses ecoreClass="MyDsl.ecore#//Minus">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Minus/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Minus/right"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Mult">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Mult/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Mult/right"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Div">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Div/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Div/right"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//MyNumber">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//MyNumber/value"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//VariableUse">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//VariableUse/ref"/>
     </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//Plus"/>
-    <genClasses ecoreClass="MyDsl.ecore#//Minus"/>
-    <genClasses ecoreClass="MyDsl.ecore#//Mult"/>
-    <genClasses ecoreClass="MyDsl.ecore#//Div"/>
   </genPackages>
 </genmodel:GenModel>

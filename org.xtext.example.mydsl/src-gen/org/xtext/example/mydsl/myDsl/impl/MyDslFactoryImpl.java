@@ -11,18 +11,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.xtext.example.mydsl.myDsl.Div;
-import org.xtext.example.mydsl.myDsl.Exp;
-import org.xtext.example.mydsl.myDsl.ExpOp;
-import org.xtext.example.mydsl.myDsl.MathExp;
-import org.xtext.example.mydsl.myDsl.Minus;
-import org.xtext.example.mydsl.myDsl.Mult;
-import org.xtext.example.mydsl.myDsl.MyDslFactory;
-import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.Parenthesis;
-import org.xtext.example.mydsl.myDsl.Plus;
-import org.xtext.example.mydsl.myDsl.Primary;
-import org.xtext.example.mydsl.myDsl.VariableUse;
+import org.xtext.example.mydsl.myDsl.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,14 +68,12 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.MATH_EXP: return createMathExp();
       case MyDslPackage.EXP: return createExp();
       case MyDslPackage.EXP_OP: return createExpOp();
-      case MyDslPackage.PRIMARY: return createPrimary();
-      case MyDslPackage.PARENTHESIS: return createParenthesis();
-      case MyDslPackage.NUMBER: return createNumber();
-      case MyDslPackage.VARIABLE_USE: return createVariableUse();
       case MyDslPackage.PLUS: return createPlus();
       case MyDslPackage.MINUS: return createMinus();
       case MyDslPackage.MULT: return createMult();
       case MyDslPackage.DIV: return createDiv();
+      case MyDslPackage.MY_NUMBER: return createMyNumber();
+      case MyDslPackage.VARIABLE_USE: return createVariableUse();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -126,54 +113,6 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     ExpOpImpl expOp = new ExpOpImpl();
     return expOp;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Primary createPrimary()
-  {
-    PrimaryImpl primary = new PrimaryImpl();
-    return primary;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Parenthesis createParenthesis()
-  {
-    ParenthesisImpl parenthesis = new ParenthesisImpl();
-    return parenthesis;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public org.xtext.example.mydsl.myDsl.Number createNumber()
-  {
-    NumberImpl number = new NumberImpl();
-    return number;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public VariableUse createVariableUse()
-  {
-    VariableUseImpl variableUse = new VariableUseImpl();
-    return variableUse;
   }
 
   /**
@@ -222,6 +161,30 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     DivImpl div = new DivImpl();
     return div;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MyNumber createMyNumber()
+  {
+    MyNumberImpl myNumber = new MyNumberImpl();
+    return myNumber;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public VariableUse createVariableUse()
+  {
+    VariableUseImpl variableUse = new VariableUseImpl();
+    return variableUse;
   }
 
   /**

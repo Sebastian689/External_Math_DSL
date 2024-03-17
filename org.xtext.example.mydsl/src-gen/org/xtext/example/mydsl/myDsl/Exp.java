@@ -10,14 +10,6 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Exp</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Exp#getLeft <em>Left</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Exp#getOperator <em>Operator</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Exp#getRight <em>Right</em>}</li>
- * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getExp()
  * @model
@@ -25,70 +17,4 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Exp extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Left</em>' containment reference.
-   * @see #setLeft(org.xtext.example.mydsl.myDsl.Number)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getExp_Left()
-   * @model containment="true"
-   * @generated
-   */
-  org.xtext.example.mydsl.myDsl.Number getLeft();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Exp#getLeft <em>Left</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Left</em>' containment reference.
-   * @see #getLeft()
-   * @generated
-   */
-  void setLeft(org.xtext.example.mydsl.myDsl.Number value);
-
-  /**
-   * Returns the value of the '<em><b>Operator</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Operator</em>' containment reference.
-   * @see #setOperator(ExpOp)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getExp_Operator()
-   * @model containment="true"
-   * @generated
-   */
-  ExpOp getOperator();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Exp#getOperator <em>Operator</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Operator</em>' containment reference.
-   * @see #getOperator()
-   * @generated
-   */
-  void setOperator(ExpOp value);
-
-  /**
-   * Returns the value of the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Right</em>' containment reference.
-   * @see #setRight(org.xtext.example.mydsl.myDsl.Number)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getExp_Right()
-   * @model containment="true"
-   * @generated
-   */
-  org.xtext.example.mydsl.myDsl.Number getRight();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Exp#getRight <em>Right</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Right</em>' containment reference.
-   * @see #getRight()
-   * @generated
-   */
-  void setRight(org.xtext.example.mydsl.myDsl.Number value);
-
 } // Exp

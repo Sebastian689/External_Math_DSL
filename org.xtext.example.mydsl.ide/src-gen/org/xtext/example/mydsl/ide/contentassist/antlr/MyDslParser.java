@@ -31,24 +31,32 @@ public class MyDslParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, MyDslGrammarAccess grammarAccess) {
+			builder.put(grammarAccess.getPlusMinusAccess().getAlternatives_1(), "rule__PlusMinus__Alternatives_1");
+			builder.put(grammarAccess.getTermAccess().getAlternatives_1(), "rule__Term__Alternatives_1");
 			builder.put(grammarAccess.getExpOpAccess().getAlternatives(), "rule__ExpOp__Alternatives");
 			builder.put(grammarAccess.getPrimaryAccess().getAlternatives(), "rule__Primary__Alternatives");
 			builder.put(grammarAccess.getMathExpAccess().getGroup(), "rule__MathExp__Group__0");
-			builder.put(grammarAccess.getExpAccess().getGroup(), "rule__Exp__Group__0");
-			builder.put(grammarAccess.getExpAccess().getGroup_1(), "rule__Exp__Group_1__0");
+			builder.put(grammarAccess.getPlusMinusAccess().getGroup(), "rule__PlusMinus__Group__0");
+			builder.put(grammarAccess.getPlusMinusAccess().getGroup_1_0(), "rule__PlusMinus__Group_1_0__0");
+			builder.put(grammarAccess.getPlusMinusAccess().getGroup_1_1(), "rule__PlusMinus__Group_1_1__0");
+			builder.put(grammarAccess.getTermAccess().getGroup(), "rule__Term__Group__0");
+			builder.put(grammarAccess.getTermAccess().getGroup_1_0(), "rule__Term__Group_1_0__0");
+			builder.put(grammarAccess.getTermAccess().getGroup_1_1(), "rule__Term__Group_1_1__0");
 			builder.put(grammarAccess.getExpOpAccess().getGroup_0(), "rule__ExpOp__Group_0__0");
 			builder.put(grammarAccess.getExpOpAccess().getGroup_1(), "rule__ExpOp__Group_1__0");
 			builder.put(grammarAccess.getExpOpAccess().getGroup_2(), "rule__ExpOp__Group_2__0");
 			builder.put(grammarAccess.getExpOpAccess().getGroup_3(), "rule__ExpOp__Group_3__0");
-			builder.put(grammarAccess.getParenthesisAccess().getGroup(), "rule__Parenthesis__Group__0");
+			builder.put(grammarAccess.getPrimaryAccess().getGroup_0(), "rule__Primary__Group_0__0");
+			builder.put(grammarAccess.getPrimaryAccess().getGroup_1(), "rule__Primary__Group_1__0");
+			builder.put(grammarAccess.getPrimaryAccess().getGroup_2(), "rule__Primary__Group_2__0");
 			builder.put(grammarAccess.getMathExpAccess().getNameAssignment_1(), "rule__MathExp__NameAssignment_1");
 			builder.put(grammarAccess.getMathExpAccess().getExpAssignment_3(), "rule__MathExp__ExpAssignment_3");
-			builder.put(grammarAccess.getExpAccess().getLeftAssignment_0(), "rule__Exp__LeftAssignment_0");
-			builder.put(grammarAccess.getExpAccess().getOperatorAssignment_1_0(), "rule__Exp__OperatorAssignment_1_0");
-			builder.put(grammarAccess.getExpAccess().getRightAssignment_1_1(), "rule__Exp__RightAssignment_1_1");
-			builder.put(grammarAccess.getParenthesisAccess().getExpAssignment_1(), "rule__Parenthesis__ExpAssignment_1");
-			builder.put(grammarAccess.getNumberAccess().getValueAssignment(), "rule__Number__ValueAssignment");
-			builder.put(grammarAccess.getVariableUseAccess().getRefAssignment(), "rule__VariableUse__RefAssignment");
+			builder.put(grammarAccess.getPlusMinusAccess().getRightAssignment_1_0_2(), "rule__PlusMinus__RightAssignment_1_0_2");
+			builder.put(grammarAccess.getPlusMinusAccess().getRightAssignment_1_1_2(), "rule__PlusMinus__RightAssignment_1_1_2");
+			builder.put(grammarAccess.getTermAccess().getRightAssignment_1_0_2(), "rule__Term__RightAssignment_1_0_2");
+			builder.put(grammarAccess.getTermAccess().getRightAssignment_1_1_2(), "rule__Term__RightAssignment_1_1_2");
+			builder.put(grammarAccess.getPrimaryAccess().getValueAssignment_0_1(), "rule__Primary__ValueAssignment_0_1");
+			builder.put(grammarAccess.getPrimaryAccess().getRefAssignment_2_1(), "rule__Primary__RefAssignment_2_1");
 		}
 	}
 	

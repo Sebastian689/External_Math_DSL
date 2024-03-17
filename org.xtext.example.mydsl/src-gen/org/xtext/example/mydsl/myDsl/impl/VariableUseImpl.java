@@ -27,7 +27,7 @@ import org.xtext.example.mydsl.myDsl.VariableUse;
  *
  * @generated
  */
-public class VariableUseImpl extends PrimaryImpl implements VariableUse
+public class VariableUseImpl extends ExpImpl implements VariableUse
 {
   /**
    * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.

@@ -20,7 +20,7 @@ package org.xtext.example.mydsl.myDsl;
  * @model
  * @generated
  */
-public interface VariableUse extends Primary
+public interface VariableUse extends Exp
 {
   /**
    * Returns the value of the '<em><b>Ref</b></em>' reference.

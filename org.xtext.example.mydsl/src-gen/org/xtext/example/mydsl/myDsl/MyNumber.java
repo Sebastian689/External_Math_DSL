@@ -6,21 +6,21 @@ package org.xtext.example.mydsl.myDsl;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Number</b></em>'.
+ * A representation of the model object '<em><b>My Number</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Number#getValue <em>Value</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.MyNumber#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getNumber()
+ * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMyNumber()
  * @model
  * @generated
  */
-public interface Number extends Primary
+public interface MyNumber extends Exp
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
@@ -28,14 +28,14 @@ public interface Number extends Primary
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
    * @see #setValue(int)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getNumber_Value()
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMyNumber_Value()
    * @model
    * @generated
    */
   int getValue();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Number#getValue <em>Value</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.MyNumber#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Value</em>' attribute.
@@ -44,4 +44,4 @@ public interface Number extends Primary
    */
   void setValue(int value);
 
-} // Number
+} // MyNumber

@@ -51,42 +51,6 @@ public interface MyDslFactory extends EFactory
   ExpOp createExpOp();
 
   /**
-   * Returns a new object of class '<em>Primary</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Primary</em>'.
-   * @generated
-   */
-  Primary createPrimary();
-
-  /**
-   * Returns a new object of class '<em>Parenthesis</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Parenthesis</em>'.
-   * @generated
-   */
-  Parenthesis createParenthesis();
-
-  /**
-   * Returns a new object of class '<em>Number</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Number</em>'.
-   * @generated
-   */
-  Number createNumber();
-
-  /**
-   * Returns a new object of class '<em>Variable Use</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Variable Use</em>'.
-   * @generated
-   */
-  VariableUse createVariableUse();
-
-  /**
    * Returns a new object of class '<em>Plus</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -121,6 +85,24 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Div createDiv();
+
+  /**
+   * Returns a new object of class '<em>My Number</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>My Number</em>'.
+   * @generated
+   */
+  MyNumber createMyNumber();
+
+  /**
+   * Returns a new object of class '<em>Variable Use</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Variable Use</em>'.
+   * @generated
+   */
+  VariableUse createVariableUse();
 
   /**
    * Returns the package supported by this factory.

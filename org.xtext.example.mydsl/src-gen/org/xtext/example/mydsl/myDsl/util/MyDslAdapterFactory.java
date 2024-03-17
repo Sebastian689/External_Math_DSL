@@ -10,17 +10,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.xtext.example.mydsl.myDsl.Div;
-import org.xtext.example.mydsl.myDsl.Exp;
-import org.xtext.example.mydsl.myDsl.ExpOp;
-import org.xtext.example.mydsl.myDsl.MathExp;
-import org.xtext.example.mydsl.myDsl.Minus;
-import org.xtext.example.mydsl.myDsl.Mult;
-import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.Parenthesis;
-import org.xtext.example.mydsl.myDsl.Plus;
-import org.xtext.example.mydsl.myDsl.Primary;
-import org.xtext.example.mydsl.myDsl.VariableUse;
+import org.xtext.example.mydsl.myDsl.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -101,26 +91,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createExpOpAdapter();
       }
       @Override
-      public Adapter casePrimary(Primary object)
-      {
-        return createPrimaryAdapter();
-      }
-      @Override
-      public Adapter caseParenthesis(Parenthesis object)
-      {
-        return createParenthesisAdapter();
-      }
-      @Override
-      public Adapter caseNumber(org.xtext.example.mydsl.myDsl.Number object)
-      {
-        return createNumberAdapter();
-      }
-      @Override
-      public Adapter caseVariableUse(VariableUse object)
-      {
-        return createVariableUseAdapter();
-      }
-      @Override
       public Adapter casePlus(Plus object)
       {
         return createPlusAdapter();
@@ -139,6 +109,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter caseDiv(Div object)
       {
         return createDivAdapter();
+      }
+      @Override
+      public Adapter caseMyNumber(MyNumber object)
+      {
+        return createMyNumberAdapter();
+      }
+      @Override
+      public Adapter caseVariableUse(VariableUse object)
+      {
+        return createVariableUseAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -208,66 +188,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Primary <em>Primary</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.Primary
-   * @generated
-   */
-  public Adapter createPrimaryAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Parenthesis <em>Parenthesis</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.Parenthesis
-   * @generated
-   */
-  public Adapter createParenthesisAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Number <em>Number</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.Number
-   * @generated
-   */
-  public Adapter createNumberAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.VariableUse <em>Variable Use</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.VariableUse
-   * @generated
-   */
-  public Adapter createVariableUseAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Plus <em>Plus</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -323,6 +243,36 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDivAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.MyNumber <em>My Number</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.MyNumber
+   * @generated
+   */
+  public Adapter createMyNumberAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.VariableUse <em>Variable Use</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.VariableUse
+   * @generated
+   */
+  public Adapter createVariableUseAdapter()
   {
     return null;
   }
