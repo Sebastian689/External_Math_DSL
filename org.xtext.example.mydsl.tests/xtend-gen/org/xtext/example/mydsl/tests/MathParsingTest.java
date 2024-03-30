@@ -1,6 +1,7 @@
 package org.xtext.example.mydsl.tests;
 
 import com.google.inject.Inject;
+import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -13,7 +14,8 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.xtext.example.mydsl.myDsl.MathExp;
+import org.xtext.example.mydsl.generator.MyDslGenerator;
+import org.xtext.example.mydsl.myDsl.MathExpression;
 
 @ExtendWith(InjectionExtension.class)
 @InjectWith(MyDslInjectorProvider.class)
@@ -21,14 +23,14 @@ import org.xtext.example.mydsl.myDsl.MathExp;
 public class MathParsingTest {
   @Inject
   @Extension
-  private ParseHelper<MathExp> _parseHelper;
+  private ParseHelper<MathExpression> _parseHelper;
 
   @Test
   public void loadModel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("var x = 42");
-      final MathExp result = this._parseHelper.parse(_builder);
+      final MathExpression result = this._parseHelper.parse(_builder);
       Assertions.assertNotNull(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       boolean _isEmpty = errors.isEmpty();
@@ -44,189 +46,388 @@ public class MathParsingTest {
 
   @Test
   public void number() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 42");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(42, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void simpleAddition() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 40 + 2");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(42, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void threeNumbersAddition() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 22 + 18 + 2");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      System.out.println(variables.get("x"));
+      Assertions.assertEquals(42, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void subtraction() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 46 - 4");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(42, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void subtractionNonCommutative() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 4 - 46");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals((-42), variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void threeNumbersSubtraction() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 42 - 4 - 80");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals((-42), variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void additionAndSubtraction() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 100-20+10-3");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(87, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void multiplication() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 5*4");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(20, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void threeNumbersMultiplication() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 5*4*6");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(120, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void division() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 20/4");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(5, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void divisionNonCommutative() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 4 / 20");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(0, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void threeNumbersDivision() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 120/6/5");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(4, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void multiplicationAndDivision() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 100*20/10*3");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(600, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void multipleVariables() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 42");
+      _builder.newLine();
+      _builder.append("var y = 100-20+10-3");
+      _builder.newLine();
+      _builder.append("var z = 100*20/10*3");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(42, variables.get("x"));
+      Assertions.assertEquals(87, variables.get("y"));
+      Assertions.assertEquals(600, variables.get("z"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void parenthesis() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = (10+3)*7-4");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(87, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void precedence() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 10+3*4-12/3+3");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(21, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void letNumber() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = let y=42 in y end");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(42, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void letNumberExpression() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = let y=10*8 in y+7 end");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(87, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void nestedLet() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = let y=2 in let z=3 in y*z end + y end + 79");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(87, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void letVariableShadowing() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = let y=2 in let y=3 in y*y end + y end + 76");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(87, variables.get("x"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void referenceSingleVar() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 42");
+      _builder.newLine();
+      _builder.append("var y = x");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(42, variables.get("x"));
+      Assertions.assertEquals(42, variables.get("y"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void referenceExpressionVar() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 40 + 2");
+      _builder.newLine();
+      _builder.append("var y = x * 2");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(42, variables.get("x"));
+      Assertions.assertEquals(84, variables.get("y"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void letUseGlobalVariableBody() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 21");
+      _builder.newLine();
+      _builder.append("var y = let i = 2 in i*x end");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(42, variables.get("y"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void letUseGlobalVariableBinding() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 21");
+      _builder.newLine();
+      _builder.append("var y = let i = x in i*2 end");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(42, variables.get("y"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void letUseGlobalVariableShadowing() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 20");
+      _builder.newLine();
+      _builder.append("var y = let x = 21 in x*2 end");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(20, variables.get("x"));
+      Assertions.assertEquals(42, variables.get("y"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
   public void letUseGlobalVariableBindingSameName() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var x = 21");
+      _builder.newLine();
+      _builder.append("var y = let x = x in x*2 end");
+      _builder.newLine();
+      final MathExpression result = this._parseHelper.parse(_builder);
+      final Map<String, Integer> variables = MyDslGenerator.compute(result);
+      Assertions.assertEquals(21, variables.get("x"));
+      Assertions.assertEquals(42, variables.get("y"));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

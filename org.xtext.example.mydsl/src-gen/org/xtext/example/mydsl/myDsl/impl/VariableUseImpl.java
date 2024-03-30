@@ -6,45 +6,53 @@ package org.xtext.example.mydsl.myDsl.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.xtext.example.mydsl.myDsl.MathExp;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.VariableUse;
+import org.xtext.example.mydsl.myDsl.variableUse;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Variable Use</b></em>'.
+ * An implementation of the model object '<em><b>variable Use</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.VariableUseImpl#getRef <em>Ref</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.variableUseImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class VariableUseImpl extends ExpImpl implements VariableUse
+public class variableUseImpl extends ExpressionImpl implements variableUse
 {
   /**
-   * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRef()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected MathExp ref;
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected VariableUseImpl()
+  protected variableUseImpl()
   {
     super();
   }
@@ -66,29 +74,9 @@ public class VariableUseImpl extends ExpImpl implements VariableUse
    * @generated
    */
   @Override
-  public MathExp getRef()
+  public String getName()
   {
-    if (ref != null && ref.eIsProxy())
-    {
-      InternalEObject oldRef = (InternalEObject)ref;
-      ref = (MathExp)eResolveProxy(oldRef);
-      if (ref != oldRef)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.VARIABLE_USE__REF, oldRef, ref));
-      }
-    }
-    return ref;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public MathExp basicGetRef()
-  {
-    return ref;
+    return name;
   }
 
   /**
@@ -97,12 +85,12 @@ public class VariableUseImpl extends ExpImpl implements VariableUse
    * @generated
    */
   @Override
-  public void setRef(MathExp newRef)
+  public void setName(String newName)
   {
-    MathExp oldRef = ref;
-    ref = newRef;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.VARIABLE_USE__REF, oldRef, ref));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.VARIABLE_USE__NAME, oldName, name));
   }
 
   /**
@@ -115,9 +103,8 @@ public class VariableUseImpl extends ExpImpl implements VariableUse
   {
     switch (featureID)
     {
-      case MyDslPackage.VARIABLE_USE__REF:
-        if (resolve) return getRef();
-        return basicGetRef();
+      case MyDslPackage.VARIABLE_USE__NAME:
+        return getName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -132,8 +119,8 @@ public class VariableUseImpl extends ExpImpl implements VariableUse
   {
     switch (featureID)
     {
-      case MyDslPackage.VARIABLE_USE__REF:
-        setRef((MathExp)newValue);
+      case MyDslPackage.VARIABLE_USE__NAME:
+        setName((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -149,8 +136,8 @@ public class VariableUseImpl extends ExpImpl implements VariableUse
   {
     switch (featureID)
     {
-      case MyDslPackage.VARIABLE_USE__REF:
-        setRef((MathExp)null);
+      case MyDslPackage.VARIABLE_USE__NAME:
+        setName(NAME_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -166,10 +153,27 @@ public class VariableUseImpl extends ExpImpl implements VariableUse
   {
     switch (featureID)
     {
-      case MyDslPackage.VARIABLE_USE__REF:
-        return ref != null;
+      case MyDslPackage.VARIABLE_USE__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
   }
 
-} //VariableUseImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
+  }
+
+} //variableUseImpl

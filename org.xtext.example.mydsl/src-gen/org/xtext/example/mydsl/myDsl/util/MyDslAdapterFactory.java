@@ -76,19 +76,19 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
     new MyDslSwitch<Adapter>()
     {
       @Override
+      public Adapter caseMathExpression(MathExpression object)
+      {
+        return createMathExpressionAdapter();
+      }
+      @Override
       public Adapter caseMathExp(MathExp object)
       {
         return createMathExpAdapter();
       }
       @Override
-      public Adapter caseExp(Exp object)
+      public Adapter caseExpression(Expression object)
       {
-        return createExpAdapter();
-      }
-      @Override
-      public Adapter caseExpOp(ExpOp object)
-      {
-        return createExpOpAdapter();
+        return createExpressionAdapter();
       }
       @Override
       public Adapter casePlus(Plus object)
@@ -116,9 +116,14 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createMyNumberAdapter();
       }
       @Override
-      public Adapter caseVariableUse(VariableUse object)
+      public Adapter caseLet(Let object)
       {
-        return createVariableUseAdapter();
+        return createLetAdapter();
+      }
+      @Override
+      public Adapter casevariableUse(variableUse object)
+      {
+        return createvariableUseAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -143,6 +148,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
 
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.MathExpression <em>Math Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.MathExpression
+   * @generated
+   */
+  public Adapter createMathExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.MathExp <em>Math Exp</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -158,31 +178,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Exp <em>Exp</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.Exp
+   * @see org.xtext.example.mydsl.myDsl.Expression
    * @generated
    */
-  public Adapter createExpAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ExpOp <em>Exp Op</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.ExpOp
-   * @generated
-   */
-  public Adapter createExpOpAdapter()
+  public Adapter createExpressionAdapter()
   {
     return null;
   }
@@ -263,16 +268,31 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.VariableUse <em>Variable Use</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Let <em>Let</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.VariableUse
+   * @see org.xtext.example.mydsl.myDsl.Let
    * @generated
    */
-  public Adapter createVariableUseAdapter()
+  public Adapter createLetAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.variableUse <em>variable Use</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.variableUse
+   * @generated
+   */
+  public Adapter createvariableUseAdapter()
   {
     return null;
   }

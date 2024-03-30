@@ -24,6 +24,15 @@ public interface MyDslFactory extends EFactory
   MyDslFactory eINSTANCE = org.xtext.example.mydsl.myDsl.impl.MyDslFactoryImpl.init();
 
   /**
+   * Returns a new object of class '<em>Math Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Math Expression</em>'.
+   * @generated
+   */
+  MathExpression createMathExpression();
+
+  /**
    * Returns a new object of class '<em>Math Exp</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -33,22 +42,13 @@ public interface MyDslFactory extends EFactory
   MathExp createMathExp();
 
   /**
-   * Returns a new object of class '<em>Exp</em>'.
+   * Returns a new object of class '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Exp</em>'.
+   * @return a new object of class '<em>Expression</em>'.
    * @generated
    */
-  Exp createExp();
-
-  /**
-   * Returns a new object of class '<em>Exp Op</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Exp Op</em>'.
-   * @generated
-   */
-  ExpOp createExpOp();
+  Expression createExpression();
 
   /**
    * Returns a new object of class '<em>Plus</em>'.
@@ -96,13 +96,22 @@ public interface MyDslFactory extends EFactory
   MyNumber createMyNumber();
 
   /**
-   * Returns a new object of class '<em>Variable Use</em>'.
+   * Returns a new object of class '<em>Let</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Variable Use</em>'.
+   * @return a new object of class '<em>Let</em>'.
    * @generated
    */
-  VariableUse createVariableUse();
+  Let createLet();
+
+  /**
+   * Returns a new object of class '<em>variable Use</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>variable Use</em>'.
+   * @generated
+   */
+  variableUse createvariableUse();
 
   /**
    * Returns the package supported by this factory.

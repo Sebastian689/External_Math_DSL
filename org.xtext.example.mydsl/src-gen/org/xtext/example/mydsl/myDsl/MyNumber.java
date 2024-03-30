@@ -20,7 +20,7 @@ package org.xtext.example.mydsl.myDsl;
  * @model
  * @generated
  */
-public interface MyNumber extends Exp
+public interface MyNumber extends Expression
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.

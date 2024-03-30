@@ -12,48 +12,19 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
 import org.xtext.example.mydsl.myDsl.MathExp
 
-import org.xtext.example.mydsl.generator.MyDslGenerator.compute
-
 @ExtendWith(InjectionExtension)
 @InjectWith(MyDslInjectorProvider)
 class MyDslParsingTest {
+	@Inject
+	ParseHelper<MathExp> parseHelper
 	
-	@Inject extension ParseHelper<MathExp>
-	
-	// T01 Minimal
 	@Test
 	def void loadModel() {
-		val result = '''var x = 42'''.parse
+		val result = parseHelper.parse('''
+			Hello Xtext!
+		''')
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
-	}
-	
-	// T02 Operations
-	@Test
-	def void number() {
-		val result = '''
-			var x = 42
-		'''.parse
-		val variables = result.compute
-		Assertions.assertEquals(42, variables.get("x"))
-	}
-	
-	@Test
-	def void simpleAddition() {
-		val result = '''
-			var x = 40 + 2
-		'''.parse
-		val variables = result.compute
-		Assertions.assertEquals(42, variables.get("x"))
-	}
-	
-	@Test
-	def void threeNumbersAddition() {
-		val result = '''
-			var x = 22 + 18 + 2
-		'''.parse
-		val variables = result.compute
-		Assertions.assertEquals(42, variables.get("x"))
 	}
 }

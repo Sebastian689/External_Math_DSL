@@ -65,18 +65,31 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     switch (eClass.getClassifierID())
     {
+      case MyDslPackage.MATH_EXPRESSION: return createMathExpression();
       case MyDslPackage.MATH_EXP: return createMathExp();
-      case MyDslPackage.EXP: return createExp();
-      case MyDslPackage.EXP_OP: return createExpOp();
+      case MyDslPackage.EXPRESSION: return createExpression();
       case MyDslPackage.PLUS: return createPlus();
       case MyDslPackage.MINUS: return createMinus();
       case MyDslPackage.MULT: return createMult();
       case MyDslPackage.DIV: return createDiv();
       case MyDslPackage.MY_NUMBER: return createMyNumber();
-      case MyDslPackage.VARIABLE_USE: return createVariableUse();
+      case MyDslPackage.LET: return createLet();
+      case MyDslPackage.VARIABLE_USE: return createvariableUse();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MathExpression createMathExpression()
+  {
+    MathExpressionImpl mathExpression = new MathExpressionImpl();
+    return mathExpression;
   }
 
   /**
@@ -97,22 +110,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * @generated
    */
   @Override
-  public Exp createExp()
+  public Expression createExpression()
   {
-    ExpImpl exp = new ExpImpl();
-    return exp;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ExpOp createExpOp()
-  {
-    ExpOpImpl expOp = new ExpOpImpl();
-    return expOp;
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
   }
 
   /**
@@ -181,9 +182,21 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * @generated
    */
   @Override
-  public VariableUse createVariableUse()
+  public Let createLet()
   {
-    VariableUseImpl variableUse = new VariableUseImpl();
+    LetImpl let = new LetImpl();
+    return let;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public variableUse createvariableUse()
+  {
+    variableUseImpl variableUse = new variableUseImpl();
     return variableUse;
   }
 

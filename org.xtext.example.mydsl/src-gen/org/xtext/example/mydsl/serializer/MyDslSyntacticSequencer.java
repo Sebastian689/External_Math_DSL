@@ -56,7 +56,8 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '('*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ref=[MathExp|ID]
+	 *     (rule start) (ambiguity) 'let' name=ID
+	 *     (rule start) (ambiguity) name=ID
 	 *     (rule start) (ambiguity) value=INT
 	 *     (rule start) (ambiguity) {Div.left=}
 	 *     (rule start) (ambiguity) {Minus.left=}

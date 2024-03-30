@@ -10,11 +10,12 @@ import org.junit.jupiter.api.^extension.ExtendWith
 import org.xtext.example.mydsl.myDsl.MathExp
 
 import static extension org.xtext.example.mydsl.generator.MyDslGenerator.compute
+import org.xtext.example.mydsl.myDsl.MathExpression
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyDslInjectorProvider)
 class MathParsingTest {
-	@Inject extension ParseHelper<MathExp> 
+	@Inject extension ParseHelper<MathExpression> 
 	
 	// T01 Minimal
 	@Test
@@ -50,6 +51,7 @@ class MathParsingTest {
 			var x = 22 + 18 + 2
 		'''.parse
 		val variables = result.compute
+		System.out.println(variables.get("x"))
 		Assertions.assertEquals(42, variables.get("x"))
 	}
 	
@@ -152,6 +154,7 @@ class MathParsingTest {
 		'''.parse
 		val variables = result.compute
 		Assertions.assertEquals(42, variables.get("x"))
+
 		Assertions.assertEquals(87, variables.get("y"))
 		Assertions.assertEquals(600, variables.get("z"))
 	}

@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
 import org.xtext.example.mydsl.myDsl.MathExp
+import org.xtext.example.mydsl.myDsl.MathExpression
 
 
 import static extension org.xtext.example.mydsl.generator.MyDslGenerator.compute
@@ -18,7 +19,7 @@ import static extension org.xtext.example.mydsl.generator.MyDslGenerator.compute
 @ExtendWith(InjectionExtension)
 @InjectWith(MyDslInjectorProvider)
 class MathExampleTest {
-	@Inject extension ParseHelper<MathExp> 
+	@Inject extension ParseHelper<MathExpression> 
 	
 	@Test
 	def void mathematicalOperations() {
@@ -47,7 +48,6 @@ class MathExampleTest {
 			var d = let i = 4 in  c + i end 
 		'''.parse
 		val variables = result.compute
-		System.out.println(variables.get("a"))
 		Assertions.assertEquals(40, variables.get("a"))
 		Assertions.assertEquals(80, variables.get("b"))
 		Assertions.assertEquals(240, variables.get("c"))

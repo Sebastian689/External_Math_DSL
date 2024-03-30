@@ -9,7 +9,6 @@ import java.util.List;
 import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
@@ -24,6 +23,22 @@ import org.eclipse.xtext.service.GrammarProvider;
 @Singleton
 public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarElementFinder {
 	
+	public class MathExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.MathExpression");
+		private final Assignment cExpressionsAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cExpressionsMathExpParserRuleCall_0 = (RuleCall)cExpressionsAssignment.eContents().get(0);
+		
+		//MathExpression:
+		//    expressions+=MathExp+
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//expressions+=MathExp+
+		public Assignment getExpressionsAssignment() { return cExpressionsAssignment; }
+		
+		//MathExp
+		public RuleCall getExpressionsMathExpParserRuleCall_0() { return cExpressionsMathExpParserRuleCall_0; }
+	}
 	public class MathExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.MathExp");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -62,18 +77,6 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class ExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Exp");
-		private final RuleCall cPlusMinusParserRuleCall = (RuleCall)rule.eContents().get(1);
-		
-		//Exp:
-		//    PlusMinus
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//PlusMinus
-		public RuleCall getPlusMinusParserRuleCall() { return cPlusMinusParserRuleCall; }
-	}
-	public class PlusMinusElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.PlusMinus");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cTermParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -88,14 +91,17 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cRightAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
 		private final RuleCall cRightTermParserRuleCall_1_1_2_0 = (RuleCall)cRightAssignment_1_1_2.eContents().get(0);
 		
-		//PlusMinus returns Exp:
-		//    Term ({Plus.left=current} '+' right =Term |
+		////Exp:
+		////    PlusMinus
+		////;
+		//Exp returns Expression:
+		//    Term ({Plus.left=current} '+' right=Term |
 		//        {Minus.left=current} '-' right=Term
 		//    )*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Term ({Plus.left=current} '+' right =Term |
+		//Term ({Plus.left=current} '+' right=Term |
 		//    {Minus.left=current} '-' right=Term
 		//)*
 		public Group getGroup() { return cGroup; }
@@ -103,12 +109,12 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Term
 		public RuleCall getTermParserRuleCall_0() { return cTermParserRuleCall_0; }
 		
-		//({Plus.left=current} '+' right =Term |
+		//({Plus.left=current} '+' right=Term |
 		//       {Minus.left=current} '-' right=Term
 		//   )*
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
-		//{Plus.left=current} '+' right =Term
+		//{Plus.left=current} '+' right=Term
 		public Group getGroup_1_0() { return cGroup_1_0; }
 		
 		//{Plus.left=current}
@@ -117,7 +123,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'+'
 		public Keyword getPlusSignKeyword_1_0_1() { return cPlusSignKeyword_1_0_1; }
 		
-		//right =Term
+		//right=Term
 		public Assignment getRightAssignment_1_0_2() { return cRightAssignment_1_0_2; }
 		
 		//Term
@@ -154,7 +160,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cRightAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
 		private final RuleCall cRightPrimaryParserRuleCall_1_1_2_0 = (RuleCall)cRightAssignment_1_1_2.eContents().get(0);
 		
-		//Term returns Exp:
+		//Term returns Expression:
 		//    Primary (
 		//        ({Mult.left=current} '*' right=Primary |
 		//        {Div.left=current} '/' right=Primary
@@ -210,66 +216,6 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Primary
 		public RuleCall getRightPrimaryParserRuleCall_1_1_2_0() { return cRightPrimaryParserRuleCall_1_1_2_0; }
 	}
-	public class ExpOpElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ExpOp");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cPlusAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final Keyword cPlusSignKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Action cMinusAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Keyword cHyphenMinusKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Action cMultAction_2_0 = (Action)cGroup_2.eContents().get(0);
-		private final Keyword cAsteriskKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
-		private final Action cDivAction_3_0 = (Action)cGroup_3.eContents().get(0);
-		private final Keyword cSolidusKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
-		
-		//ExpOp:
-		//    {Plus} '+' | {Minus} '-'     | {Mult} '*' | {Div} '/'
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{Plus} '+' | {Minus} '-'	 | {Mult} '*' | {Div} '/'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//{Plus} '+'
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//{Plus}
-		public Action getPlusAction_0_0() { return cPlusAction_0_0; }
-		
-		//'+'
-		public Keyword getPlusSignKeyword_0_1() { return cPlusSignKeyword_0_1; }
-		
-		//{Minus} '-'
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{Minus}
-		public Action getMinusAction_1_0() { return cMinusAction_1_0; }
-		
-		//'-'
-		public Keyword getHyphenMinusKeyword_1_1() { return cHyphenMinusKeyword_1_1; }
-		
-		//{Mult} '*'
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//{Mult}
-		public Action getMultAction_2_0() { return cMultAction_2_0; }
-		
-		//'*'
-		public Keyword getAsteriskKeyword_2_1() { return cAsteriskKeyword_2_1; }
-		
-		//{Div} '/'
-		public Group getGroup_3() { return cGroup_3; }
-		
-		//{Div}
-		public Action getDivAction_3_0() { return cDivAction_3_0; }
-		
-		//'/'
-		public Keyword getSolidusKeyword_3_1() { return cSolidusKeyword_3_1; }
-	}
 	public class PrimaryElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Primary");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -281,18 +227,15 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final RuleCall cExpParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Action cVariableUseAction_2_0 = (Action)cGroup_2.eContents().get(0);
-		private final Assignment cRefAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final CrossReference cRefMathExpCrossReference_2_1_0 = (CrossReference)cRefAssignment_2_1.eContents().get(0);
-		private final RuleCall cRefMathExpIDTerminalRuleCall_2_1_0_1 = (RuleCall)cRefMathExpCrossReference_2_1_0.eContents().get(1);
+		private final RuleCall cLetParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cVariableUseParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
-		//Primary returns Exp:
-		//    {MyNumber} value=INT | '(' Exp ')' | {VariableUse} ref = [MathExp]
+		//Primary returns Expression:
+		//    {MyNumber} value=INT | '(' Exp ')' | Let | VariableUse
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{MyNumber} value=INT | '(' Exp ')' | {VariableUse} ref = [MathExp]
+		//{MyNumber} value=INT | '(' Exp ')' | Let | VariableUse
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//{MyNumber} value=INT
@@ -319,29 +262,101 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//')'
 		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
 		
-		//{VariableUse} ref = [MathExp]
-		public Group getGroup_2() { return cGroup_2; }
+		//Let
+		public RuleCall getLetParserRuleCall_2() { return cLetParserRuleCall_2; }
 		
-		//{VariableUse}
-		public Action getVariableUseAction_2_0() { return cVariableUseAction_2_0; }
+		//VariableUse
+		public RuleCall getVariableUseParserRuleCall_3() { return cVariableUseParserRuleCall_3; }
+	}
+	public class LetElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Let");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cLetAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cLetKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cBindAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cBindExpParserRuleCall_4_0 = (RuleCall)cBindAssignment_4.eContents().get(0);
+		private final Keyword cInKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cVarNameAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cVarNameExpParserRuleCall_6_0 = (RuleCall)cVarNameAssignment_6.eContents().get(0);
+		private final Keyword cEndKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
-		//ref = [MathExp]
-		public Assignment getRefAssignment_2_1() { return cRefAssignment_2_1; }
+		//Let returns Expression:
+		//    {Let} 'let' name=ID '=' bind=Exp 'in' varName=Exp 'end'
+		//;
+		@Override public ParserRule getRule() { return rule; }
 		
-		//[MathExp]
-		public CrossReference getRefMathExpCrossReference_2_1_0() { return cRefMathExpCrossReference_2_1_0; }
+		//{Let} 'let' name=ID '=' bind=Exp 'in' varName=Exp 'end'
+		public Group getGroup() { return cGroup; }
+		
+		//{Let}
+		public Action getLetAction_0() { return cLetAction_0; }
+		
+		//'let'
+		public Keyword getLetKeyword_1() { return cLetKeyword_1; }
+		
+		//name=ID
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
 		//ID
-		public RuleCall getRefMathExpIDTerminalRuleCall_2_1_0_1() { return cRefMathExpIDTerminalRuleCall_2_1_0_1; }
+		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_3() { return cEqualsSignKeyword_3; }
+		
+		//bind=Exp
+		public Assignment getBindAssignment_4() { return cBindAssignment_4; }
+		
+		//Exp
+		public RuleCall getBindExpParserRuleCall_4_0() { return cBindExpParserRuleCall_4_0; }
+		
+		//'in'
+		public Keyword getInKeyword_5() { return cInKeyword_5; }
+		
+		//varName=Exp
+		public Assignment getVarNameAssignment_6() { return cVarNameAssignment_6; }
+		
+		//Exp
+		public RuleCall getVarNameExpParserRuleCall_6_0() { return cVarNameExpParserRuleCall_6_0; }
+		
+		//'end'
+		public Keyword getEndKeyword_7() { return cEndKeyword_7; }
+	}
+	public class VariableUseElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.VariableUse");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cVariableUseAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		
+		//VariableUse returns Expression:
+		//    {variableUse} name=ID
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{variableUse} name=ID
+		public Group getGroup() { return cGroup; }
+		
+		//{variableUse}
+		public Action getVariableUseAction_0() { return cVariableUseAction_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
 	
 	
+	private final MathExpressionElements pMathExpression;
 	private final MathExpElements pMathExp;
 	private final ExpElements pExp;
-	private final PlusMinusElements pPlusMinus;
 	private final TermElements pTerm;
-	private final ExpOpElements pExpOp;
 	private final PrimaryElements pPrimary;
+	private final LetElements pLet;
+	private final VariableUseElements pVariableUse;
 	
 	private final Grammar grammar;
 	
@@ -352,12 +367,13 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 			TerminalsGrammarAccess gaTerminals) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
+		this.pMathExpression = new MathExpressionElements();
 		this.pMathExp = new MathExpElements();
 		this.pExp = new ExpElements();
-		this.pPlusMinus = new PlusMinusElements();
 		this.pTerm = new TermElements();
-		this.pExpOp = new ExpOpElements();
 		this.pPrimary = new PrimaryElements();
+		this.pLet = new LetElements();
+		this.pVariableUse = new VariableUseElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -387,6 +403,17 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 
 	
+	//MathExpression:
+	//    expressions+=MathExp+
+	//;
+	public MathExpressionElements getMathExpressionAccess() {
+		return pMathExpression;
+	}
+	
+	public ParserRule getMathExpressionRule() {
+		return getMathExpressionAccess().getRule();
+	}
+	
 	//MathExp:
 	//    'var' name=ID '=' exp=Exp
 	//;
@@ -398,8 +425,13 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getMathExpAccess().getRule();
 	}
 	
-	//Exp:
-	//    PlusMinus
+	////Exp:
+	////    PlusMinus
+	////;
+	//Exp returns Expression:
+	//    Term ({Plus.left=current} '+' right=Term |
+	//        {Minus.left=current} '-' right=Term
+	//    )*
 	//;
 	public ExpElements getExpAccess() {
 		return pExp;
@@ -409,20 +441,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getExpAccess().getRule();
 	}
 	
-	//PlusMinus returns Exp:
-	//    Term ({Plus.left=current} '+' right =Term |
-	//        {Minus.left=current} '-' right=Term
-	//    )*
-	//;
-	public PlusMinusElements getPlusMinusAccess() {
-		return pPlusMinus;
-	}
-	
-	public ParserRule getPlusMinusRule() {
-		return getPlusMinusAccess().getRule();
-	}
-	
-	//Term returns Exp:
+	//Term returns Expression:
 	//    Primary (
 	//        ({Mult.left=current} '*' right=Primary |
 	//        {Div.left=current} '/' right=Primary
@@ -437,19 +456,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getTermAccess().getRule();
 	}
 	
-	//ExpOp:
-	//    {Plus} '+' | {Minus} '-'     | {Mult} '*' | {Div} '/'
-	//;
-	public ExpOpElements getExpOpAccess() {
-		return pExpOp;
-	}
-	
-	public ParserRule getExpOpRule() {
-		return getExpOpAccess().getRule();
-	}
-	
-	//Primary returns Exp:
-	//    {MyNumber} value=INT | '(' Exp ')' | {VariableUse} ref = [MathExp]
+	//Primary returns Expression:
+	//    {MyNumber} value=INT | '(' Exp ')' | Let | VariableUse
 	//;
 	public PrimaryElements getPrimaryAccess() {
 		return pPrimary;
@@ -457,6 +465,28 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getPrimaryRule() {
 		return getPrimaryAccess().getRule();
+	}
+	
+	//Let returns Expression:
+	//    {Let} 'let' name=ID '=' bind=Exp 'in' varName=Exp 'end'
+	//;
+	public LetElements getLetAccess() {
+		return pLet;
+	}
+	
+	public ParserRule getLetRule() {
+		return getLetAccess().getRule();
+	}
+	
+	//VariableUse returns Expression:
+	//    {variableUse} name=ID
+	//;
+	public VariableUseElements getVariableUseAccess() {
+		return pVariableUse;
+	}
+	
+	public ParserRule getVariableUseRule() {
+		return getVariableUseAccess().getRule();
 	}
 	
 	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

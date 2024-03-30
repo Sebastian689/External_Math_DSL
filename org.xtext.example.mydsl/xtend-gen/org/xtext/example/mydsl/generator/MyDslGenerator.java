@@ -4,14 +4,27 @@
 package org.xtext.example.mydsl.generator;
 
 import com.google.common.collect.Iterators;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import javax.swing.JOptionPane;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.xtext.example.mydsl.myDsl.Exp;
+import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.xtext.example.mydsl.myDsl.Div;
+import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.Let;
 import org.xtext.example.mydsl.myDsl.MathExp;
+import org.xtext.example.mydsl.myDsl.MathExpression;
+import org.xtext.example.mydsl.myDsl.Minus;
+import org.xtext.example.mydsl.myDsl.Mult;
 import org.xtext.example.mydsl.myDsl.MyNumber;
 import org.xtext.example.mydsl.myDsl.Plus;
+import org.xtext.example.mydsl.myDsl.variableUse;
 
 /**
  * Generates code from your model files on save.
@@ -20,27 +33,176 @@ import org.xtext.example.mydsl.myDsl.Plus;
  */
 @SuppressWarnings("all")
 public class MyDslGenerator extends AbstractGenerator {
+  private static Map<String, Integer> variables = new HashMap<String, Integer>();
+
+  private static Map<String, Integer> newMap = new HashMap<String, Integer>();
+
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    final MathExp sys = Iterators.<MathExp>filter(resource.getAllContents(), MathExp.class).next();
-    fsa.generateFile("math.txt", MyDslGenerator.compute(sys.getExp()));
+    final MathExpression math = Iterators.<MathExpression>filter(resource.getAllContents(), MathExpression.class).next();
+    final Map<String, Integer> result = MyDslGenerator.compute(math);
+    this.displayPanel(result);
   }
 
-  public static String compute(final Plus exp) {
-    String _compute = MyDslGenerator.compute(exp.getLeft());
-    String _plus = ("(" + _compute);
-    String _plus_1 = (_plus + "+");
-    String _compute_1 = MyDslGenerator.compute(exp.getRight());
-    String _plus_2 = (_plus_1 + _compute_1);
-    return (_plus_2 + ")");
+  public static Map<String, Integer> compute(final MathExpression mathExpression) {
+    MyDslGenerator.variables.clear();
+    MyDslGenerator.newMap.clear();
+    final EList<MathExp> expressions = mathExpression.getExpressions();
+    final HashSet<String> unresolved = new HashSet<String>();
+    for (final MathExp mathExp : expressions) {
+      unresolved.add(mathExp.getName());
+    }
+    boolean progress = true;
+    while (((!unresolved.isEmpty()) && progress)) {
+      {
+        progress = false;
+        for (final MathExp mathExp_1 : expressions) {
+          boolean _contains = unresolved.contains(mathExp_1.getName());
+          if (_contains) {
+            final Integer value = MyDslGenerator.computeExp(mathExp_1.getExp());
+            if ((value != null)) {
+              MyDslGenerator.variables.put(mathExp_1.getName(), value);
+              unresolved.remove(mathExp_1.getName());
+              progress = true;
+            }
+          }
+        }
+      }
+    }
+    boolean _isEmpty = unresolved.isEmpty();
+    boolean _not = (!_isEmpty);
+    if (_not) {
+      throw new IllegalStateException(("Cyclic variable dependency detected or unresolved variables: " + unresolved));
+    }
+    InputOutput.<String>println(("Variables: " + MyDslGenerator.variables));
+    InputOutput.<String>println(("newMap: " + MyDslGenerator.newMap));
+    return MyDslGenerator.variables;
   }
 
-  public static String compute(final MyNumber exp) {
-    int _value = exp.getValue();
-    return (Integer.valueOf(_value) + "");
+  public static Integer computeExp(final Expression exp) {
+    Integer _switchResult = null;
+    boolean _matched = false;
+    if (exp instanceof Plus) {
+      _matched=true;
+      InputOutput.<String>println("plus");
+      final Integer left = MyDslGenerator.computeExp(((Plus)exp).getLeft());
+      final Integer right = MyDslGenerator.computeExp(((Plus)exp).getRight());
+      if (((left != null) && (right != null))) {
+        return Integer.valueOf(((left).intValue() + (right).intValue()));
+      }
+      return null;
+    }
+    if (!_matched) {
+      if (exp instanceof Minus) {
+        _matched=true;
+        InputOutput.<String>println("minus");
+        final Integer left = MyDslGenerator.computeExp(((Minus)exp).getLeft());
+        final Integer right = MyDslGenerator.computeExp(((Minus)exp).getRight());
+        if (((left != null) && (right != null))) {
+          return Integer.valueOf(((left).intValue() - (right).intValue()));
+        }
+        return null;
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof Mult) {
+        _matched=true;
+        InputOutput.<String>println("mult");
+        final Integer left = MyDslGenerator.computeExp(((Mult)exp).getLeft());
+        final Integer right = MyDslGenerator.computeExp(((Mult)exp).getRight());
+        if (((left != null) && (right != null))) {
+          return Integer.valueOf(((left).intValue() * (right).intValue()));
+        }
+        return null;
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof Div) {
+        _matched=true;
+        InputOutput.<String>println("div");
+        final Integer left = MyDslGenerator.computeExp(((Div)exp).getLeft());
+        final Integer right = MyDslGenerator.computeExp(((Div)exp).getRight());
+        if ((((left != null) && (right != null)) && ((right).intValue() != 0))) {
+          return Integer.valueOf(((left).intValue() / (right).intValue()));
+        }
+        return null;
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof MyNumber) {
+        _matched=true;
+        int _xblockexpression = (int) 0;
+        {
+          InputOutput.<String>println("number");
+          _xblockexpression = ((MyNumber)exp).getValue();
+        }
+        _switchResult = Integer.valueOf(_xblockexpression);
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof Let) {
+        _matched=true;
+        Integer _xblockexpression = null;
+        {
+          InputOutput.<String>println("let");
+          final HashMap<String, Integer> newVariables = new HashMap<String, Integer>(MyDslGenerator.newMap);
+          newVariables.put(((Let)exp).getName(), MyDslGenerator.computeExp(((Let)exp).getBind()));
+          final Integer oldValue = MyDslGenerator.newMap.get(((Let)exp).getName());
+          MyDslGenerator.newMap = newVariables;
+          final Integer result = MyDslGenerator.computeExp(((Let)exp).getVarName());
+          MyDslGenerator.newMap.remove(((Let)exp).getName());
+          if ((oldValue != null)) {
+            MyDslGenerator.newMap.put(((Let)exp).getName(), oldValue);
+          }
+          _xblockexpression = result;
+        }
+        _switchResult = _xblockexpression;
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof variableUse) {
+        _matched=true;
+        Integer _xblockexpression = null;
+        {
+          InputOutput.<String>println("variableUse");
+          Integer _xifexpression = null;
+          boolean _containsKey = MyDslGenerator.newMap.containsKey(((variableUse)exp).getName());
+          if (_containsKey) {
+            _xifexpression = MyDslGenerator.newMap.get(((variableUse)exp).getName());
+          } else {
+            Integer _xifexpression_1 = null;
+            boolean _containsKey_1 = MyDslGenerator.variables.containsKey(((variableUse)exp).getName());
+            if (_containsKey_1) {
+              _xifexpression_1 = MyDslGenerator.variables.get(((variableUse)exp).getName());
+            } else {
+              _xifexpression_1 = null;
+            }
+            _xifexpression = _xifexpression_1;
+          }
+          _xblockexpression = _xifexpression;
+        }
+        _switchResult = _xblockexpression;
+      }
+    }
+    if (!_matched) {
+      _switchResult = Integer.valueOf(1);
+    }
+    return _switchResult;
   }
 
-  public static String compute(final Exp exp) {
-    return "exp!";
+  public void displayPanel(final Map<String, Integer> result) {
+    String resultString = "";
+    Set<Map.Entry<String, Integer>> _entrySet = result.entrySet();
+    for (final Map.Entry<String, Integer> entry : _entrySet) {
+      String _resultString = resultString;
+      String _key = entry.getKey();
+      String _plus = ("var " + _key);
+      String _plus_1 = (_plus + " = ");
+      Integer _value = entry.getValue();
+      String _plus_2 = (_plus_1 + _value);
+      String _plus_3 = (_plus_2 + "\n");
+      resultString = (_resultString + _plus_3);
+    }
+    JOptionPane.showMessageDialog(null, resultString, "Math Language", JOptionPane.INFORMATION_MESSAGE);
   }
 }

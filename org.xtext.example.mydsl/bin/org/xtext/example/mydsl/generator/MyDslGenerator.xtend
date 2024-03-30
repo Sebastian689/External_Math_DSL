@@ -15,13 +15,18 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import org.xtext.example.mydsl.myDsl.MathExpression
 import org.xtext.example.mydsl.myDsl.MathExp
-import org.xtext.example.mydsl.myDsl.Exp
+//import org.xtext.example.mydsl.myDsl.Exp
 import org.xtext.example.mydsl.myDsl.Plus
 import org.xtext.example.mydsl.myDsl.Minus
 import org.xtext.example.mydsl.myDsl.Mult
 import org.xtext.example.mydsl.myDsl.Div
 import org.xtext.example.mydsl.myDsl.MyNumber
+import org.xtext.example.mydsl.myDsl.Expression
+import org.xtext.example.mydsl.myDsl.Let
+import org.xtext.example.mydsl.myDsl.variableUse
+import java.util.HashSet
 
 /**
  * Generates code from your model files on save.
@@ -30,21 +35,126 @@ import org.xtext.example.mydsl.myDsl.MyNumber
  */
 class MyDslGenerator extends AbstractGenerator {
 
-	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		val sys = resource.allContents.filter(MathExp).next
-		fsa.generateFile("math.txt", sys.exp.compute())
-	}
-	
-	
-	def static String compute(Plus exp){
-		"(" + exp.left.compute  +"+" +exp.right.compute +")"
-	}
-	def static String compute(MyNumber exp){
-		exp.value + ""
-	}
-	
-	def static compute(Exp exp) {
-		"exp!"
-	}
+    static Map<String, Integer> variables = new HashMap()
+    static Map<String, Integer> newMap = new HashMap()
 
+    override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+        val math = resource.allContents.filter(MathExpression).next
+        val result = math.compute
+
+        result.displayPanel
+    }
+
+    def static compute(MathExpression mathExpression) {
+        variables.clear()
+        newMap.clear()
+
+        val expressions = mathExpression.expressions
+        val unresolved = new HashSet<String>()
+
+        for (mathExp : expressions) {
+            unresolved.add(mathExp.name)
+        }
+
+        var progress = true
+        while (!unresolved.empty && progress) {
+            progress = false
+
+            for (mathExp : expressions) {
+                if (unresolved.contains(mathExp.name)) {
+                    val value = mathExp.exp.computeExp
+                    if (value !== null) {
+                        variables.put(mathExp.name, value)
+                        unresolved.remove(mathExp.name)
+                        progress = true
+                    }
+                }
+            }
+        }
+
+        if (!unresolved.empty) {
+            throw new IllegalStateException("Cyclic variable dependency detected or unresolved variables: " + unresolved)
+        }
+		println("Variables: " + variables)
+		println("newMap: " + newMap)
+        return variables
+    }
+
+    def static Integer computeExp(Expression exp) {
+        switch exp {
+            Plus: {
+                println("plus")
+                val left = exp.left.computeExp
+                val right = exp.right.computeExp
+                if (left !== null && right !== null) {
+                    return left + right
+                }
+                return null
+            }
+            Minus: {
+                println("minus")
+                val left = exp.left.computeExp
+                val right = exp.right.computeExp
+                if (left !== null && right !== null) {
+                    return left - right
+                }
+                return null
+            }
+            Mult: {
+                println("mult")
+                val left = exp.left.computeExp
+                val right = exp.right.computeExp
+                if (left !== null && right !== null) {
+                    return left * right
+                }
+                return null
+            }
+            Div: {
+                println("div")
+                val left = exp.left.computeExp
+                val right = exp.right.computeExp
+                if (left !== null && right !== null && right != 0) {
+                    return left / right
+                }
+                return null
+            }
+            MyNumber: {
+                println("number")
+                exp.value
+            }
+            Let: {
+                println("let")
+                val newVariables = new HashMap<String, Integer>(newMap)
+                newVariables.put(exp.name, exp.bind.computeExp)
+                val oldValue = newMap.get(exp.name)
+                newMap = newVariables
+                val result = exp.varName.computeExp
+                newMap.remove(exp.name)
+                if (oldValue !== null) {
+                    newMap.put(exp.name, oldValue)
+                }
+                result
+            }
+            variableUse: {
+                println("variableUse")
+                if (newMap.containsKey(exp.name)) {
+                    newMap.get(exp.name)
+                } else if (variables.containsKey(exp.name)) {
+                    variables.get(exp.name)
+                } else {
+                    null
+                }
+            }
+            default: 1
+        }
+    }
+
+    def void displayPanel(Map<String, Integer> result) {
+        var resultString = ""
+        for (entry : result.entrySet()) {
+            resultString += "var " + entry.getKey() + " = " + entry.getValue() + "\n"
+        }
+
+        JOptionPane.showMessageDialog(null, resultString, "Math Language", JOptionPane.INFORMATION_MESSAGE)
+    }
 }

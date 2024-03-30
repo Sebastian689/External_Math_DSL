@@ -6,42 +6,42 @@ package org.xtext.example.mydsl.myDsl;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Variable Use</b></em>'.
+ * A representation of the model object '<em><b>variable Use</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.VariableUse#getRef <em>Ref</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.variableUse#getName <em>Name</em>}</li>
  * </ul>
  *
- * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getVariableUse()
+ * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getvariableUse()
  * @model
  * @generated
  */
-public interface VariableUse extends Exp
+public interface variableUse extends Expression
 {
   /**
-   * Returns the value of the '<em><b>Ref</b></em>' reference.
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Ref</em>' reference.
-   * @see #setRef(MathExp)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getVariableUse_Ref()
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getvariableUse_Name()
    * @model
    * @generated
    */
-  MathExp getRef();
+  String getName();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.VariableUse#getRef <em>Ref</em>}' reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.variableUse#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ref</em>' reference.
-   * @see #getRef()
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
    * @generated
    */
-  void setRef(MathExp value);
+  void setName(String value);
 
-} // VariableUse
+} // variableUse

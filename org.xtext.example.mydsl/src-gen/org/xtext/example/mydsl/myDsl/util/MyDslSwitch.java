@@ -73,6 +73,13 @@ public class MyDslSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
+      case MyDslPackage.MATH_EXPRESSION:
+      {
+        MathExpression mathExpression = (MathExpression)theEObject;
+        T result = caseMathExpression(mathExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MyDslPackage.MATH_EXP:
       {
         MathExp mathExp = (MathExp)theEObject;
@@ -80,17 +87,10 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.EXP:
+      case MyDslPackage.EXPRESSION:
       {
-        Exp exp = (Exp)theEObject;
-        T result = caseExp(exp);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.EXP_OP:
-      {
-        ExpOp expOp = (ExpOp)theEObject;
-        T result = caseExpOp(expOp);
+        Expression expression = (Expression)theEObject;
+        T result = caseExpression(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -98,8 +98,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Plus plus = (Plus)theEObject;
         T result = casePlus(plus);
-        if (result == null) result = caseExp(plus);
-        if (result == null) result = caseExpOp(plus);
+        if (result == null) result = caseExpression(plus);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -107,8 +106,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Minus minus = (Minus)theEObject;
         T result = caseMinus(minus);
-        if (result == null) result = caseExp(minus);
-        if (result == null) result = caseExpOp(minus);
+        if (result == null) result = caseExpression(minus);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -116,8 +114,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Mult mult = (Mult)theEObject;
         T result = caseMult(mult);
-        if (result == null) result = caseExp(mult);
-        if (result == null) result = caseExpOp(mult);
+        if (result == null) result = caseExpression(mult);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -125,8 +122,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Div div = (Div)theEObject;
         T result = caseDiv(div);
-        if (result == null) result = caseExp(div);
-        if (result == null) result = caseExpOp(div);
+        if (result == null) result = caseExpression(div);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -134,20 +130,44 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         MyNumber myNumber = (MyNumber)theEObject;
         T result = caseMyNumber(myNumber);
-        if (result == null) result = caseExp(myNumber);
+        if (result == null) result = caseExpression(myNumber);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.LET:
+      {
+        Let let = (Let)theEObject;
+        T result = caseLet(let);
+        if (result == null) result = caseExpression(let);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       case MyDslPackage.VARIABLE_USE:
       {
-        VariableUse variableUse = (VariableUse)theEObject;
-        T result = caseVariableUse(variableUse);
-        if (result == null) result = caseExp(variableUse);
+        variableUse variableUse = (variableUse)theEObject;
+        T result = casevariableUse(variableUse);
+        if (result == null) result = caseExpression(variableUse);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       default: return defaultCase(theEObject);
     }
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Math Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Math Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMathExpression(MathExpression object)
+  {
+    return null;
   }
 
   /**
@@ -167,33 +187,17 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Exp</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Exp</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseExp(Exp object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Exp Op</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Exp Op</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExpOp(ExpOp object)
+  public T caseExpression(Expression object)
   {
     return null;
   }
@@ -279,17 +283,33 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Variable Use</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Let</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Variable Use</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Let</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseVariableUse(VariableUse object)
+  public T caseLet(Let object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>variable Use</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>variable Use</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casevariableUse(variableUse object)
   {
     return null;
   }

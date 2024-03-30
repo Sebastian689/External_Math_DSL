@@ -25,7 +25,7 @@ import org.xtext.example.mydsl.myDsl.MyNumber;
  *
  * @generated
  */
-public class MyNumberImpl extends ExpImpl implements MyNumber
+public class MyNumberImpl extends ExpressionImpl implements MyNumber
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.

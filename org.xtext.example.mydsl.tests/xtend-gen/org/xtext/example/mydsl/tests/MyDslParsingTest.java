@@ -11,7 +11,6 @@ import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.extensions.InjectionExtension;
 import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,15 +22,15 @@ import org.xtext.example.mydsl.myDsl.MathExp;
 @SuppressWarnings("all")
 public class MyDslParsingTest {
   @Inject
-  @Extension
-  private ParseHelper<MathExp> _parseHelper;
+  private ParseHelper<MathExp> parseHelper;
 
   @Test
   public void loadModel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("var x = 42");
-      final MathExp result = this._parseHelper.parse(_builder);
+      _builder.append("Hello Xtext!");
+      _builder.newLine();
+      final MathExp result = this.parseHelper.parse(_builder);
       Assertions.assertNotNull(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       boolean _isEmpty = errors.isEmpty();
@@ -43,26 +42,5 @@ public class MyDslParsingTest {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
-  }
-
-  @Test
-  public void number() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
-  }
-
-  @Test
-  public void simpleAddition() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
-  }
-
-  @Test
-  public void threeNumbersAddition() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field compute is undefined for the type MathExp"
-      + "\nget cannot be resolved");
   }
 }

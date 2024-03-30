@@ -3,21 +3,25 @@ grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
 
 generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 
+MathExpression:
+	expressions+=MathExp+
+;
+
 MathExp:
 	'var' name=ID '=' exp=Exp
 ;
 
-Exp:
-	PlusMinus
-;
+//Exp:
+//	PlusMinus
+//;
 
-PlusMinus returns Exp:
-	Term ({Plus.left=current} '+' right =Term | 
+Exp returns Expression:
+	Term ({Plus.left=current} '+' right=Term | 
 		{Minus.left=current} '-' right=Term
 	)*
 ;
 
-Term returns Exp:
+Term returns Expression:
 	Primary (
 		({Mult.left=current} '*' right=Primary |
 		{Div.left=current} '/' right=Primary
@@ -25,10 +29,15 @@ Term returns Exp:
 	)*
 ;
 
-ExpOp:
-	{Plus} '+' | {Minus} '-'	 | {Mult} '*' | {Div} '/'	
+Primary returns Expression: 
+	{MyNumber} value=INT | '(' Exp ')' | Let | VariableUse
 ;
 
-Primary returns Exp: 
-	{MyNumber} value=INT | '(' Exp ')' | {VariableUse} ref = [MathExp]
+Let returns Expression:
+	{Let} 'let' name=ID '=' bind=Exp 'in' varName=Exp 'end'
 ;
+
+VariableUse returns Expression:
+	{variableUse} name=ID
+;
+

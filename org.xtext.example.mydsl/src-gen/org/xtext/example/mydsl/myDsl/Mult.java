@@ -21,19 +21,19 @@ package org.xtext.example.mydsl.myDsl;
  * @model
  * @generated
  */
-public interface Mult extends Exp, ExpOp
+public interface Mult extends Expression
 {
   /**
    * Returns the value of the '<em><b>Left</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Left</em>' containment reference.
-   * @see #setLeft(Exp)
+   * @see #setLeft(Expression)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMult_Left()
    * @model containment="true"
    * @generated
    */
-  Exp getLeft();
+  Expression getLeft();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Mult#getLeft <em>Left</em>}' containment reference.
@@ -43,19 +43,19 @@ public interface Mult extends Exp, ExpOp
    * @see #getLeft()
    * @generated
    */
-  void setLeft(Exp value);
+  void setLeft(Expression value);
 
   /**
    * Returns the value of the '<em><b>Right</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Right</em>' containment reference.
-   * @see #setRight(Exp)
+   * @see #setRight(Expression)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMult_Right()
    * @model containment="true"
    * @generated
    */
-  Exp getRight();
+  Expression getRight();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Mult#getRight <em>Right</em>}' containment reference.
@@ -65,6 +65,6 @@ public interface Mult extends Exp, ExpOp
    * @see #getRight()
    * @generated
    */
-  void setRight(Exp value);
+  void setRight(Expression value);
 
 } // Mult
