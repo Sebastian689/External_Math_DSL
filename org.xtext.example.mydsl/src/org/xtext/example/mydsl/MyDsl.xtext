@@ -11,10 +11,6 @@ MathExp:
 	'var' name=ID '=' exp=Exp
 ;
 
-//Exp:
-//	PlusMinus
-//;
-
 Exp returns Expression:
 	Term ({Plus.left=current} '+' right=Term | 
 		{Minus.left=current} '-' right=Term

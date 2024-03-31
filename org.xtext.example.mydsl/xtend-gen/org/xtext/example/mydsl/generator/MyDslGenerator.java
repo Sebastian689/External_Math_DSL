@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.xtext.example.mydsl.myDsl.Div;
 import org.xtext.example.mydsl.myDsl.Expression;
 import org.xtext.example.mydsl.myDsl.Let;
@@ -74,8 +73,6 @@ public class MyDslGenerator extends AbstractGenerator {
     if (_not) {
       throw new IllegalStateException(("Cyclic variable dependency detected or unresolved variables: " + unresolved));
     }
-    InputOutput.<String>println(("Variables: " + MyDslGenerator.variables));
-    InputOutput.<String>println(("newMap: " + MyDslGenerator.newMap));
     return MyDslGenerator.variables;
   }
 
@@ -84,7 +81,6 @@ public class MyDslGenerator extends AbstractGenerator {
     boolean _matched = false;
     if (exp instanceof Plus) {
       _matched=true;
-      InputOutput.<String>println("plus");
       final Integer left = MyDslGenerator.computeExp(((Plus)exp).getLeft());
       final Integer right = MyDslGenerator.computeExp(((Plus)exp).getRight());
       if (((left != null) && (right != null))) {
@@ -95,7 +91,6 @@ public class MyDslGenerator extends AbstractGenerator {
     if (!_matched) {
       if (exp instanceof Minus) {
         _matched=true;
-        InputOutput.<String>println("minus");
         final Integer left = MyDslGenerator.computeExp(((Minus)exp).getLeft());
         final Integer right = MyDslGenerator.computeExp(((Minus)exp).getRight());
         if (((left != null) && (right != null))) {
@@ -107,7 +102,6 @@ public class MyDslGenerator extends AbstractGenerator {
     if (!_matched) {
       if (exp instanceof Mult) {
         _matched=true;
-        InputOutput.<String>println("mult");
         final Integer left = MyDslGenerator.computeExp(((Mult)exp).getLeft());
         final Integer right = MyDslGenerator.computeExp(((Mult)exp).getRight());
         if (((left != null) && (right != null))) {
@@ -119,7 +113,6 @@ public class MyDslGenerator extends AbstractGenerator {
     if (!_matched) {
       if (exp instanceof Div) {
         _matched=true;
-        InputOutput.<String>println("div");
         final Integer left = MyDslGenerator.computeExp(((Div)exp).getLeft());
         final Integer right = MyDslGenerator.computeExp(((Div)exp).getRight());
         if ((((left != null) && (right != null)) && ((right).intValue() != 0))) {
@@ -131,12 +124,7 @@ public class MyDslGenerator extends AbstractGenerator {
     if (!_matched) {
       if (exp instanceof MyNumber) {
         _matched=true;
-        int _xblockexpression = (int) 0;
-        {
-          InputOutput.<String>println("number");
-          _xblockexpression = ((MyNumber)exp).getValue();
-        }
-        _switchResult = Integer.valueOf(_xblockexpression);
+        _switchResult = Integer.valueOf(((MyNumber)exp).getValue());
       }
     }
     if (!_matched) {
@@ -144,7 +132,6 @@ public class MyDslGenerator extends AbstractGenerator {
         _matched=true;
         Integer _xblockexpression = null;
         {
-          InputOutput.<String>println("let");
           final HashMap<String, Integer> newVariables = new HashMap<String, Integer>(MyDslGenerator.newMap);
           newVariables.put(((Let)exp).getName(), MyDslGenerator.computeExp(((Let)exp).getBind()));
           final Integer oldValue = MyDslGenerator.newMap.get(((Let)exp).getName());
@@ -162,26 +149,21 @@ public class MyDslGenerator extends AbstractGenerator {
     if (!_matched) {
       if (exp instanceof variableUse) {
         _matched=true;
-        Integer _xblockexpression = null;
-        {
-          InputOutput.<String>println("variableUse");
-          Integer _xifexpression = null;
-          boolean _containsKey = MyDslGenerator.newMap.containsKey(((variableUse)exp).getName());
-          if (_containsKey) {
-            _xifexpression = MyDslGenerator.newMap.get(((variableUse)exp).getName());
+        Integer _xifexpression = null;
+        boolean _containsKey = MyDslGenerator.newMap.containsKey(((variableUse)exp).getName());
+        if (_containsKey) {
+          _xifexpression = MyDslGenerator.newMap.get(((variableUse)exp).getName());
+        } else {
+          Integer _xifexpression_1 = null;
+          boolean _containsKey_1 = MyDslGenerator.variables.containsKey(((variableUse)exp).getName());
+          if (_containsKey_1) {
+            _xifexpression_1 = MyDslGenerator.variables.get(((variableUse)exp).getName());
           } else {
-            Integer _xifexpression_1 = null;
-            boolean _containsKey_1 = MyDslGenerator.variables.containsKey(((variableUse)exp).getName());
-            if (_containsKey_1) {
-              _xifexpression_1 = MyDslGenerator.variables.get(((variableUse)exp).getName());
-            } else {
-              _xifexpression_1 = null;
-            }
-            _xifexpression = _xifexpression_1;
+            _xifexpression_1 = null;
           }
-          _xblockexpression = _xifexpression;
+          _xifexpression = _xifexpression_1;
         }
-        _switchResult = _xblockexpression;
+        _switchResult = _xifexpression;
       }
     }
     if (!_matched) {

@@ -11,13 +11,7 @@ import org.eclipse.xtext.generator.IGeneratorContext
 import java.util.HashMap
 import java.util.Map
 import javax.swing.JOptionPane
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.AbstractGenerator
-import org.eclipse.xtext.generator.IFileSystemAccess2
-import org.eclipse.xtext.generator.IGeneratorContext
 import org.xtext.example.mydsl.myDsl.MathExpression
-import org.xtext.example.mydsl.myDsl.MathExp
-//import org.xtext.example.mydsl.myDsl.Exp
 import org.xtext.example.mydsl.myDsl.Plus
 import org.xtext.example.mydsl.myDsl.Minus
 import org.xtext.example.mydsl.myDsl.Mult
@@ -75,15 +69,12 @@ class MyDslGenerator extends AbstractGenerator {
         if (!unresolved.empty) {
             throw new IllegalStateException("Cyclic variable dependency detected or unresolved variables: " + unresolved)
         }
-		println("Variables: " + variables)
-		println("newMap: " + newMap)
         return variables
     }
 
     def static Integer computeExp(Expression exp) {
         switch exp {
             Plus: {
-                println("plus")
                 val left = exp.left.computeExp
                 val right = exp.right.computeExp
                 if (left !== null && right !== null) {
@@ -92,7 +83,6 @@ class MyDslGenerator extends AbstractGenerator {
                 return null
             }
             Minus: {
-                println("minus")
                 val left = exp.left.computeExp
                 val right = exp.right.computeExp
                 if (left !== null && right !== null) {
@@ -101,7 +91,6 @@ class MyDslGenerator extends AbstractGenerator {
                 return null
             }
             Mult: {
-                println("mult")
                 val left = exp.left.computeExp
                 val right = exp.right.computeExp
                 if (left !== null && right !== null) {
@@ -110,7 +99,6 @@ class MyDslGenerator extends AbstractGenerator {
                 return null
             }
             Div: {
-                println("div")
                 val left = exp.left.computeExp
                 val right = exp.right.computeExp
                 if (left !== null && right !== null && right != 0) {
@@ -119,11 +107,9 @@ class MyDslGenerator extends AbstractGenerator {
                 return null
             }
             MyNumber: {
-                println("number")
                 exp.value
             }
             Let: {
-                println("let")
                 val newVariables = new HashMap<String, Integer>(newMap)
                 newVariables.put(exp.name, exp.bind.computeExp)
                 val oldValue = newMap.get(exp.name)
@@ -136,7 +122,6 @@ class MyDslGenerator extends AbstractGenerator {
                 result
             }
             variableUse: {
-                println("variableUse")
                 if (newMap.containsKey(exp.name)) {
                     newMap.get(exp.name)
                 } else if (variables.containsKey(exp.name)) {
